@@ -24,6 +24,10 @@ func init() {
 	}
 }
 
+// @title 博客系统
+// @version 1.0
+// @description Go编程之旅
+// @termsOfService https://github.com/go-programming-tour-book
 func main() {
 	//ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 	//global.Logger.Infof(ctx, "%s: go-programming-tour-book %s", "eddycjy","blog-service")
