@@ -4,11 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"io"
 	"log"
 	"runtime"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Level int8
@@ -110,8 +111,20 @@ func (l *Logger) WithTrace() *Logger {
 	ginCtx, ok := l.ctx.(*gin.Context)
 	if ok {
 		return l.WithFields(Fields{
-			"trace_id": ginCtx.MustGet("X-Trace-ID"),
-			"span_id":  ginCtx.MustGet("X-Span-ID"),
+			"trace_id": func() string {
+				if val, exists := ginCtx.Get("X-Trace-ID"); exists == false {
+					return ""
+				} else {
+					return fmt.Sprint(val)
+				}
+			},
+			"span_id": func() string {
+				if val, exists := ginCtx.Get("X-Span-ID"); exists == false {
+					return ""
+				} else {
+					return fmt.Sprint(val)
+				}
+			},
 		})
 	}
 	return l

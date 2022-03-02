@@ -1,6 +1,10 @@
 package main
 
 import (
+	"log"
+	"net/http"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-programming-tour-book/blog-service/global"
 	"github.com/go-programming-tour-book/blog-service/internal/model"
@@ -8,13 +12,10 @@ import (
 	"github.com/go-programming-tour-book/blog-service/pkg/logger"
 	"github.com/go-programming-tour-book/blog-service/pkg/setting"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"log"
-	"net/http"
-	"time"
 )
 
 func init() {
-	err := setupSettring()
+	err := setupSetting()
 	if err != nil {
 		log.Fatalf("init.setupSetting err: %v", err)
 	}
@@ -44,7 +45,7 @@ func main() {
 	s.ListenAndServe()
 }
 
-func setupSettring() error {
+func setupSetting() error {
 	setting, err := setting.NewSetting()
 	if err != nil {
 		return err

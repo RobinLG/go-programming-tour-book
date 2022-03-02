@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+
 	"github.com/go-programming-tour-book/blog-service/global"
 	"github.com/go-programming-tour-book/blog-service/pkg/setting"
 	"github.com/jinzhu/gorm"
